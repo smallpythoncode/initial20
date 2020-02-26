@@ -2,27 +2,54 @@
 die will be printed. Currently the die is not rolled, only printed.
 20200218"""
 
-import dice
+from random import randint
 
-print("Let's roll some dice!")
-print("Press 'Enter' to roll a d20, or enter a number for a "
-      "different die.\nPress 'q' to quit.\n")
 
-# A simple loop that only prints the side of the dice selected, displays
-# a help prompt, or breaks.
-while True:
-    prompt = input()
-    if prompt == "q":
-        break
-    elif prompt == "":
-        print("20")
-    elif prompt in dice.d_num:
-        print(prompt)
-    elif prompt == "h":
-        print("Press 'Enter' to roll a d20.\n"
-              "Enter a number to roll a different die.\n"
-              "Available dice: 4, 6, 8, 10, 12, 20, 100.\n"
-              "Press 'q' to quit."
-              "Turn off CAPS LOCK.")
-    else:
-        print("That is not a valid entry.\nPress 'h' for help.")
+def roll(num_sides=20, num_dice=1, mod=0):
+    """
+    Roll any number of dice of the same sides, add a modifier, and print the
+    results.
+    By default, roll is a single d20 with no modifier.
+    """
+    rolls = []
+    for i in range(num_dice):
+        rolls.append(randint(1, num_sides))
+    print(rolls)
+    print(sum(rolls) + mod)
+
+
+
+
+# print("Let's roll some dice!")
+# print("Press 'Enter' to roll a d20, or enter a number for a "
+#       "different die.\nPress 'q' to quit.\n")
+
+
+
+
+
+# map
+
+VALID = [4, 6, 8, 10, 12, 20, 100]
+
+# join() returns a string concatenated with elements of an iterable.
+# map() executes a specific function for each item in an iterable.
+# while True:
+#     current_die = int(input())
+#     if current_die not in VALID:
+#         print('Die sides must be one of ' + ', '.join(map(str, VALID)) + '.')
+#
+#
+#     else:
+#         this = Dice(current_die)
+#         print(this.num_sides)
+
+
+
+
+print('')
+
+print('Spell attack roll with +5 modifier:')
+roll(20, 1, 5)
+print('Damage roll for Guiding Bolt (4d6):')
+roll(6, 4)
